@@ -1,10 +1,9 @@
 package array;
 
 public class MaxSumSubarray {
-    
-    public static void main(String[] args) {
-        int []number = {2,4,6,-8,10};
 
+    //brute force
+    public static int maxSumSubArray(int []number){
         int maxSum=Integer.MIN_VALUE;
         int minSum = Integer.MAX_VALUE;
         int sum =0;
@@ -23,8 +22,29 @@ public class MaxSumSubarray {
                 sum = 0;
             }
         }
+        return maxSum;
+    }
 
-        System.out.println("Max Sum : "+maxSum);
-        System.out.println("Min Sum : "+minSum);
+    //Efficent solution
+    public static int KadanysAlgo(int []arr){
+        int max = Integer.MIN_VALUE;
+        int curr = 0;
+
+        for(int i=0;i<arr.length;i++){
+            curr += arr[i];
+            if(curr>max)
+                max = curr;
+            if(curr<0)
+                curr = 0;
+        }
+        return max;
+    }
+    
+    public static void main(String[] args) {
+        int []number = {2,4,6,-8,10};
+
+       System.out.println("Max sum : "+KadanysAlgo(number));
+
+       
     }
 }
